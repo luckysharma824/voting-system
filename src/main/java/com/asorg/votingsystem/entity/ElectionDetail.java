@@ -1,4 +1,4 @@
-package com.asorg.votingsystem.controller.entity;
+package com.asorg.votingsystem.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,13 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Election {
+public class ElectionDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String electionType;
     private String state;
-    private String voteWindow;
+    private Boolean votingStatus;
 
     public Integer getId() {
         return id;
@@ -38,11 +38,11 @@ public class Election {
         this.state = state;
     }
 
-    public String getVoteWindow() {
-        return voteWindow;
+    public Boolean getVotingStatus() {
+        return votingStatus;
     }
 
-    public void setVoteWindow(String voteWindow) {
-        this.voteWindow = voteWindow;
+    public void setVotingStatus(Boolean votingStatus) {
+        this.votingStatus = votingStatus;
     }
 }

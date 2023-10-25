@@ -1,4 +1,4 @@
-package com.asorg.votingsystem.controller.entity;
+package com.asorg.votingsystem.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,13 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Party {
+public class PartyDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
-    private String leader;
     private String symbol;
+    private Boolean status;
 
     public Integer getId() {
         return id;
@@ -30,19 +30,19 @@ public class Party {
         this.name = name;
     }
 
-    public String getLeader() {
-        return leader;
-    }
-
-    public void setLeader(String leader) {
-        this.leader = leader;
-    }
-
     public String getSymbol() {
         return symbol;
     }
 
     public void setSymbol(String symbol) {
         this.symbol = symbol;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

@@ -19,6 +19,11 @@ public class VoterController {
         return voterService.findVoter(id);
     }
 
+    @PostMapping(value = "/voting")
+    public String doVote(@RequestParam Integer candId) {
+        voterService.doVote(candId);
+        return "voting successfully done";
+    }
 
 
 }

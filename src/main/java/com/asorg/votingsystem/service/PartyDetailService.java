@@ -7,6 +7,8 @@ import com.asorg.votingsystem.repository.PartyDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PartyDetailService {
     @Autowired
@@ -16,5 +18,9 @@ public class PartyDetailService {
     }
     public PartyDetail findPartyDetail(Integer id){
       return partyDetailRepository.findById(id).orElse(null);
+    }
+
+    public List<PartyDetail> findAllParties() {
+        return  partyDetailRepository.findAll();
     }
 }

@@ -8,6 +8,7 @@ public class Candidate {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String  name;
+    private Long totalVotes;
     @OneToOne
     private PartyDetail partyDetail;
     @OneToOne
@@ -43,5 +44,13 @@ public class Candidate {
 
     public void setElectionDetail(ElectionDetail electionDetail) {
         this.electionDetail = electionDetail;
+    }
+
+    public Long getTotalVotes() {
+        return totalVotes;
+    }
+
+    public void setTotalVotes(Long totalVotes) {
+        this.totalVotes = totalVotes;
     }
 }

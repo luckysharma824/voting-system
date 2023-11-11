@@ -1,17 +1,19 @@
 package com.asorg.votingsystem.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.asorg.votingsystem.enums.ElectionTypeEnum;
+import com.asorg.votingsystem.enums.StateEnum;
+
+import javax.persistence.*;
 
 @Entity
 public class ElectionDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String electionType;
-    private String state;
+    @Enumerated(EnumType.STRING)
+    private ElectionTypeEnum electionType;
+    @Enumerated
+    private StateEnum state;
     private Boolean votingStatus;
 
     public Integer getId() {
@@ -22,19 +24,19 @@ public class ElectionDetail {
         this.id = id;
     }
 
-    public String getElectionType() {
+    public ElectionTypeEnum getElectionType() {
         return electionType;
     }
 
-    public void setElectionType(String electionType) {
+    public void setElectionType(ElectionTypeEnum electionType) {
         this.electionType = electionType;
     }
 
-    public String getState() {
+    public StateEnum getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(StateEnum state) {
         this.state = state;
     }
 
@@ -45,4 +47,5 @@ public class ElectionDetail {
     public void setVotingStatus(Boolean votingStatus) {
         this.votingStatus = votingStatus;
     }
+
 }

@@ -23,4 +23,10 @@ public class CandidateController {
     public Candidate getCandidate(@RequestParam Integer id) {
         return candidateService.findCandidate(id);
     }
+
+    @GetMapping(value = "/candidate-by-election/{electionId}")
+    public List<Candidate> getAllCandidatesByElection(@PathVariable Integer electionId) {
+        return candidateService.listByElections(electionId);
+    }
+
 }

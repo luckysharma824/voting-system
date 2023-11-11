@@ -1,12 +1,11 @@
 package com.asorg.votingsystem.controller;
 
-import com.asorg.votingsystem.entity.Identity;
 import com.asorg.votingsystem.entity.PartyDetail;
 import com.asorg.votingsystem.service.PartyDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Access;
+import java.util.List;
 
 @RestController
 public class PartyDetailController {
@@ -23,5 +22,9 @@ public class PartyDetailController {
     public PartyDetail getPartyDetail(@RequestParam Integer id) {
         return   partyDetailService .findPartyDetail(id);
 
+    }
+    @GetMapping("/partydetail/all")
+    public List<PartyDetail> getPartyDetailList() {
+        return partyDetailService.findAllParties();
     }
 }

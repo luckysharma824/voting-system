@@ -11,24 +11,13 @@ public class Voter extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @OneToMany
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private List<Identity> identity;
+    private String voterId;
     @OneToOne
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private BoothDetail booth;
 
     @Enumerated(EnumType.STRING)
     private StatusEnum status;
-
-    public List<Identity> getIdentity() {
-        return identity;
-    }
-
-    public void setIdentity(List<Identity> identity) {
-        this.identity = identity;
-    }
-
     public BoothDetail getBooth() {
         return booth;
     }
@@ -47,6 +36,14 @@ public class Voter extends User {
 
     public StatusEnum getStatus() {
         return status;
+    }
+
+    public String getVoterId() {
+        return voterId;
+    }
+
+    public void setVoterId(String voterId) {
+        this.voterId = voterId;
     }
 
     public void setStatus(StatusEnum status) {

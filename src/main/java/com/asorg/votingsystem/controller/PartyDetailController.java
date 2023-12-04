@@ -3,6 +3,8 @@ package com.asorg.votingsystem.controller;
 import com.asorg.votingsystem.entity.PartyDetail;
 import com.asorg.votingsystem.service.PartyDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +21,12 @@ public class PartyDetailController {
 
     }
 
+    @PutMapping("/partydetail")
+    public PartyDetail editPartyDetail(@RequestBody PartyDetail partyDetail){
+        partyDetailService.editPartyDetail(partyDetail);
+        return partyDetail;
+    }
+
     @GetMapping("/partydetail")
     public PartyDetail getPartyDetail(@RequestParam Integer id) {
         return   partyDetailService .findPartyDetail(id);
@@ -27,5 +35,11 @@ public class PartyDetailController {
     @GetMapping("/partydetail/all")
     public List<PartyDetail> getPartyDetailList() {
         return partyDetailService.findAllParties();
+    }
+
+    @DeleteMapping(value = "/partydetail")
+    public ResponseEntity<Object> deleteParty(@RequestParam Integer id) {
+        partyDetailService.deleteParty(id);
+        return new ResponseEntity<>("Successfully deleted", HttpStatus.OK);
     }
 }

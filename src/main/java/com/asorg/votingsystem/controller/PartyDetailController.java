@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -38,8 +40,10 @@ public class PartyDetailController {
     }
 
     @DeleteMapping(value = "/partydetail")
-    public ResponseEntity<Object> deleteParty(@RequestParam Integer id) {
+    public Map<String, String> deleteParty(@RequestParam Integer id) {
+        Map<String, String> response = new LinkedHashMap<>();
         partyDetailService.deleteParty(id);
-        return new ResponseEntity<>("Successfully deleted", HttpStatus.OK);
+        response.put("message", "Record successfully deleted");
+        return response;
     }
 }

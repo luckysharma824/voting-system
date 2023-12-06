@@ -21,6 +21,12 @@ public class ElectionDetailController {
         return electionDetail;
     }
 
+    @PutMapping("/electionDetail")
+    public ElectionDetail editElectionDetail(@RequestBody ElectionDetail electionDetail) {
+        electionDetailService.editElectionDetail(electionDetail);
+        return electionDetail;
+    }
+
     @GetMapping("/electionDetail")
     public ElectionDetail findElectionDetail(@RequestParam Integer id) {
         return electionDetailService.findElectionDetail(id);

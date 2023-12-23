@@ -1,15 +1,15 @@
 package com.asorg.votingsystem.controller;
 
+import com.asorg.votingsystem.dto.PartyDetailDto;
 import com.asorg.votingsystem.entity.PartyDetail;
 import com.asorg.votingsystem.service.PartyDetailService;
+import com.asorg.votingsystem.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @CrossOrigin("*")
@@ -17,10 +17,15 @@ public class PartyDetailController {
     @Autowired
     PartyDetailService partyDetailService;
     @PostMapping("/partydetail")
-    public PartyDetail addPartyDetail(@RequestBody PartyDetail partyDetail){
-       partyDetailService.addPartyDetail(partyDetail);
-        return partyDetail;
-
+    public ResponseEntity<Object> addPartyDetail(@RequestBody PartyDetailDto partyDetail){
+        PartyDetail party = partyDetailService.addPartyDetail(partyDetail);
+        boolean isSuccess = false;
+        String message = "Already exists";
+        if (party != null) {
+            isSuccess = true;
+            message = "Successfully stored";
+        }
+        return Response.handleResponse(party, message, isSuccess, HttpStatus.OK);
     }
 
     @PutMapping("/partydetail")
@@ -40,10 +45,8 @@ public class PartyDetailController {
     }
 
     @DeleteMapping(value = "/partydetail")
-    public Map<String, String> deleteParty(@RequestParam Integer id) {
-        Map<String, String> response = new LinkedHashMap<>();
+    public ResponseEntity<Object> deleteParty(@RequestParam Integer id) {
         partyDetailService.deleteParty(id);
-        response.put("message", "Record successfully deleted");
-        return response;
+        return Response.handleResponse("Record successfully deleted", true, HttpStatus.OK);
     }
 }

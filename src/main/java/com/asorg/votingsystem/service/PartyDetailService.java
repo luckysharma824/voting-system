@@ -1,5 +1,6 @@
 package com.asorg.votingsystem.service;
 
+import com.asorg.votingsystem.dto.PartyDetailDto;
 import com.asorg.votingsystem.entity.Identity;
 import com.asorg.votingsystem.entity.PartyDetail;
 import com.asorg.votingsystem.repository.IdentityRepository;
@@ -14,8 +15,16 @@ import java.util.Optional;
 public class PartyDetailService {
     @Autowired
     private PartyDetailRepository partyDetailRepository;
-    public void addPartyDetail(PartyDetail partyDetail){
-        partyDetailRepository.save(partyDetail);
+    public PartyDetail addPartyDetail(PartyDetailDto partyDetail){
+        boolean isExists = partyDetailRepository.existsByNameAndSymbol(partyDetail.getName(), partyDetail.getSymbol());
+        if (!isExists) {
+            PartyDetail party = new PartyDetail();
+            party.setName(partyDetail.getName());
+            party.setSymbol(partyDetail.getSymbol());
+            party.setStatus(partyDetail.getStatus());
+            return partyDetailRepository.save(party);
+        }
+        return null;
     }
 
 

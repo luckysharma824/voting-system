@@ -31,7 +31,7 @@ public class CandidateController {
         return Response.handleResponse(candidate1, message, isSuccess, HttpStatus.OK);
     }
 
-    @PutMapping(value = "candidate")
+    @PutMapping(value = "/candidate")
     public ResponseEntity<Object> editCandidate(CandidateDto candidateDto) {
         Candidate candidate1 = candidateService.updateCandidate(candidateDto);
         String message = "Candidate Detail Successfully updated.";
@@ -44,8 +44,9 @@ public class CandidateController {
     }
 
     @GetMapping("/candidate")
-    public Candidate getCandidate(@RequestParam Integer id) {
-        return candidateService.findCandidate(id);
+    public ResponseEntity<Object> getCandidate(@RequestParam Integer id) {
+        return Response.handleResponse(candidateService.findCandidate(id),
+                "Successfully retrieved", true, HttpStatus.OK);
     }
 
     @DeleteMapping("/candidate/{id}")

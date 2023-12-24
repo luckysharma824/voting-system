@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -28,14 +29,18 @@ public class PartyDetailService {
     }
 
 
-    public PartyDetail editPartyDetail(PartyDetail partyDetail) {
+    public PartyDetail editPartyDetail(PartyDetailDto partyDetail) {
         Optional<PartyDetail> optionalParty = partyDetailRepository.findById(partyDetail.getId());
         if (optionalParty.isPresent()) {
-            PartyDetail existing = optionalParty.get();
-            existing.setName(partyDetail.getName());
-            existing.setSymbol(partyDetail.getSymbol());
-            existing.setStatus(partyDetail.getStatus());
-            return partyDetailRepository.save(partyDetail);
+            PartyDetail sameDetailParty = partyDetailRepository.findByNameAndSymbol(
+                    partyDetail.getName(),partyDetail.getSymbol());
+            if (sameDetailParty == null || Objects.equals(optionalParty.get().getId(), sameDetailParty.getId())) {
+                PartyDetail existing = optionalParty.get();
+                existing.setName(partyDetail.getName());
+                existing.setSymbol(partyDetail.getSymbol());
+                existing.setStatus(partyDetail.getStatus());
+                return partyDetailRepository.save(existing);
+            }
         }
         return null;
     }

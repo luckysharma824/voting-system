@@ -1,18 +1,11 @@
-package com.asorg.votingsystem.entity;
+package com.asorg.votingsystem.dto;
 
 import com.asorg.votingsystem.enums.ElectionTypeEnum;
 import com.asorg.votingsystem.enums.StateEnum;
 
-import javax.persistence.*;
-
-@Entity
-public class ElectionDetail {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class ElectionDetailDto {
     private Integer id;
-    @Enumerated(EnumType.STRING)
     private ElectionTypeEnum electionType;
-    @Enumerated(EnumType.STRING)
     private StateEnum state;
     private Boolean votingStatus;
 
@@ -47,5 +40,4 @@ public class ElectionDetail {
     public void setVotingStatus(Boolean votingStatus) {
         this.votingStatus = votingStatus;
     }
-
 }

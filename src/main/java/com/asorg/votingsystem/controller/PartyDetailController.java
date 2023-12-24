@@ -29,14 +29,20 @@ public class PartyDetailController {
     }
 
     @PutMapping("/partydetail")
-    public PartyDetail editPartyDetail(@RequestBody PartyDetail partyDetail){
-        partyDetailService.editPartyDetail(partyDetail);
-        return partyDetail;
+    public ResponseEntity<Object> editPartyDetail(@RequestBody PartyDetailDto partyDetail){
+        PartyDetail party = partyDetailService.editPartyDetail(partyDetail);
+        boolean isSuccess = false;
+        String message = "Party Detail already exists!";
+        if (party != null) {
+            isSuccess = true;
+            message = "Details Successfully updated";
+        }
+        return Response.handleResponse(party, message, isSuccess, HttpStatus.OK);
     }
 
     @GetMapping("/partydetail")
     public PartyDetail getPartyDetail(@RequestParam Integer id) {
-        return   partyDetailService .findPartyDetail(id);
+        return partyDetailService .findPartyDetail(id);
 
     }
     @GetMapping("/partydetail/all")

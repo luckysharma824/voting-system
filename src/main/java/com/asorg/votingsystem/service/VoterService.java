@@ -25,7 +25,7 @@ public class VoterService {
         Candidate cand = candidateService.findCandidate(canId);
         if (cand != null) {
             cand.setTotalVotes(cand.getTotalVotes() + 1);
-            candidateService.addCandidate(cand);
+            candidateService.saveCandidate(cand);
         }
     }
 }

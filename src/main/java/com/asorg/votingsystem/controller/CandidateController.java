@@ -56,8 +56,9 @@ public class CandidateController {
     }
 
     @GetMapping(value = "/candidate-by-election/{electionId}")
-    public List<Candidate> getAllCandidatesByElection(@PathVariable Integer electionId) {
-        return candidateService.listByElections(electionId);
+    public ResponseEntity<Object> getAllCandidatesByElection(@PathVariable Integer electionId) {
+        List<Candidate> candidates = candidateService.listByElections(electionId);
+        return Response.handleResponse(candidates, "Successfully fetched", true, HttpStatus.OK);
     }
 
     @GetMapping(value = "/candidate/states/{state}")

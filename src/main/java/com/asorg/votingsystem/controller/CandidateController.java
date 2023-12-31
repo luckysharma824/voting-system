@@ -32,7 +32,7 @@ public class CandidateController {
     }
 
     @PutMapping(value = "/candidate")
-    public ResponseEntity<Object> editCandidate(CandidateDto candidateDto) {
+    public ResponseEntity<Object> editCandidate(@RequestBody CandidateDto candidateDto) {
         Candidate candidate1 = candidateService.updateCandidate(candidateDto);
         String message = "Candidate Detail Successfully updated.";
         boolean isSuccess = true;

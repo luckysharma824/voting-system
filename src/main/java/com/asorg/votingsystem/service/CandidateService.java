@@ -42,6 +42,8 @@ public class CandidateService {
             if (existing == null || Objects.equals(existing.getId(), existingOp.get().getId())) {
                 Candidate existingCand = existingOp.get();
                 existingCand.setName(candidate.getName());
+                existingCand.setPartyDetail(candidate.getPartyDetail());
+                existingCand.setElectionDetail(candidate.getElectionDetail());
                 return saveCandidate(existingCand);
             }
         }

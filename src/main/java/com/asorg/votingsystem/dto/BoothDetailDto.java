@@ -1,15 +1,9 @@
-package com.asorg.votingsystem.entity;
+package com.asorg.votingsystem.dto;
 
 import com.asorg.votingsystem.enums.StateEnum;
 
-import javax.persistence.*;
-
-@Entity
-public class BoothDetail {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class BoothDetailDto {
     private Integer id;
-    @Enumerated(EnumType.STRING)
     private StateEnum state;
     private String district;
     private String block;

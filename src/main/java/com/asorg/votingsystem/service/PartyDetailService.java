@@ -1,11 +1,12 @@
 package com.asorg.votingsystem.service;
 
 import com.asorg.votingsystem.dto.PartyDetailDto;
-import com.asorg.votingsystem.entity.Identity;
 import com.asorg.votingsystem.entity.PartyDetail;
-import com.asorg.votingsystem.repository.IdentityRepository;
 import com.asorg.votingsystem.repository.PartyDetailRepository;
+import com.asorg.votingsystem.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,9 @@ import java.util.Optional;
 public class PartyDetailService {
     @Autowired
     private PartyDetailRepository partyDetailRepository;
+
+    @Autowired
+    private CandidateService candidateService;
     public PartyDetail addPartyDetail(PartyDetailDto partyDetail){
         boolean isExists = partyDetailRepository.existsByNameAndSymbol(partyDetail.getName(), partyDetail.getSymbol());
         if (!isExists) {
@@ -52,7 +56,11 @@ public class PartyDetailService {
         return  partyDetailRepository.findAll();
     }
 
-    public void deleteParty(Integer id) {
+    public ResponseEntity<Object> deleteParty(Integer id) {
+        if (candidateService.existsCandidateByPartyDetail(id)) {
+            return Response.handleResponse("Candidates found, Please remove them first", false, HttpStatus.OK);
+        }
         partyDetailRepository.deleteById(id);
+        return Response.handleResponse("Party Detail successfully deleted", true, HttpStatus.OK);
     }
 }

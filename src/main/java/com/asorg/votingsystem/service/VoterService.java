@@ -1,5 +1,7 @@
 package com.asorg.votingsystem.service;
 
+import com.asorg.votingsystem.dto.VoterDto;
+import com.asorg.votingsystem.entity.BoothDetail;
 import com.asorg.votingsystem.entity.Candidate;
 import com.asorg.votingsystem.entity.Voter;
 import com.asorg.votingsystem.repository.VoterRepository;
@@ -13,8 +15,21 @@ public class VoterService {
     @Autowired
     private CandidateService candidateService;
 
-    public void addVoter(Voter voter) {
-        voterRepository.save(voter);
+    public Voter addVoter(VoterDto voterDto) {
+        Voter voter = voterRepository.findByVoterIdOrUsername(voterDto.getVoterId(), voterDto.getUsername());
+        if (voter == null) {
+            voter = new Voter();
+            voter.setName(voterDto.getName());
+            voter.setUsername(voterDto.getUsername());
+            voter.setVoterId(voterDto.getVoterId());
+            voter.setPassword(voterDto.getPassword());
+            voter.setStatus(voterDto.getStatus());
+            BoothDetail boothDetail = new BoothDetail();
+            boothDetail.setId(voterDto.getBooth().getId());
+            voter.setBooth(boothDetail);
+            return voterRepository.save(voter);
+        }
+        return null;
     }
 
     public Voter findVoter(Integer id) {

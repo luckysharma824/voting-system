@@ -52,7 +52,6 @@ public class PartyDetailController {
 
     @DeleteMapping(value = "/partydetail")
     public ResponseEntity<Object> deleteParty(@RequestParam Integer id) {
-        partyDetailService.deleteParty(id);
-        return Response.handleResponse("Record successfully deleted", true, HttpStatus.OK);
+        return partyDetailService.deleteParty(id);
     }
 }

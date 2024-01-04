@@ -13,7 +13,6 @@ public class Voter extends User {
     private Integer id;
     private String voterId;
     @OneToOne
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private BoothDetail booth;
 
     @Enumerated(EnumType.STRING)

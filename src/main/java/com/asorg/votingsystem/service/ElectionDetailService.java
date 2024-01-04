@@ -4,7 +4,10 @@ import com.asorg.votingsystem.dto.ElectionDetailDto;
 import com.asorg.votingsystem.entity.ElectionDetail;
 import com.asorg.votingsystem.enums.StateEnum;
 import com.asorg.votingsystem.repository.ElectionDetailRepository;
+import com.asorg.votingsystem.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +18,8 @@ import java.util.Optional;
 public class ElectionDetailService {
     @Autowired
     private ElectionDetailRepository electionDetailRepository;
+    @Autowired
+    private CandidateService candidateService;
     public ElectionDetail addElectionDetail(ElectionDetailDto electionDetailDto){
         boolean isExists = electionDetailRepository.existsByElectionTypeAndState(electionDetailDto.getElectionType(),
                 electionDetailDto.getState());
@@ -52,7 +57,11 @@ public class ElectionDetailService {
         return electionDetailRepository.findByState(state);
     }
 
-    public void deleteElectionDetail(Integer id) {
+    public ResponseEntity<Object> deleteElectionDetail(Integer id) {
+        if (candidateService.existsCandidateByElections(id)) {
+            return Response.handleResponse("Candidates found, Please remove them first", false, HttpStatus.OK);
+        }
         electionDetailRepository.deleteById(id);
+        return Response.handleResponse("Election Detail successfully deleted", false, HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package com.asorg.votingsystem.service;
 
+import com.asorg.votingsystem.dto.BoothDetailDto;
 import com.asorg.votingsystem.entity.BoothDetail;
 import com.asorg.votingsystem.entity.Candidate;
 import com.asorg.votingsystem.repository.BoothDetailRepository;
@@ -15,8 +16,13 @@ public class BoothDetailService {
     @Autowired
     private BoothDetailRepository boothDetailRepository;
 
-    public void addBooth(BoothDetail boothDetail) {
-        boothDetailRepository.save(boothDetail);
+    public BoothDetail addBooth(BoothDetailDto boothDetail) {
+        BoothDetail detail = new BoothDetail();
+        detail.setState(boothDetail.getState());
+        detail.setDistrict(boothDetail.getDistrict());
+        detail.setBlock(boothDetail.getBlock());
+        detail.setBooth(boothDetail.getBooth());
+        return boothDetailRepository.save(detail);
     }
 
     public BoothDetail findBoothDetail(Integer id) {

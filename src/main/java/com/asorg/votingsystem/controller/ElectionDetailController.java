@@ -65,8 +65,7 @@ public class ElectionDetailController {
 
     @DeleteMapping(value = "/electionDetail/{id}")
     public ResponseEntity<Object> deleteElection(@PathVariable Integer id) {
-        electionDetailService.deleteElectionDetail(id);
-        return Response.handleResponse("data successfully deleted", true, HttpStatus.OK);
+        return electionDetailService.deleteElectionDetail(id);
     }
 
 }

@@ -16,6 +16,16 @@ public class ElectionDetail {
     private StateEnum state;
     private Boolean votingStatus;
 
+    public ElectionDetail() {
+    }
+
+    public ElectionDetail(Integer id, ElectionTypeEnum electionType, StateEnum state, Boolean votingStatus) {
+        this.id = id;
+        this.electionType = electionType;
+        this.state = state;
+        this.votingStatus = votingStatus;
+    }
+
     public Integer getId() {
         return id;
     }

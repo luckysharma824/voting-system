@@ -14,6 +14,15 @@ public class PartyDetail {
     private String symbol;
     private Boolean status;
 
+    public PartyDetail() {}
+
+    public PartyDetail(Integer id, String name, String symbol, Boolean status) {
+        this.id = id;
+        this.name = name;
+        this.symbol = symbol;
+        this.status = status;
+    }
+
     public Integer getId() {
         return id;
     }

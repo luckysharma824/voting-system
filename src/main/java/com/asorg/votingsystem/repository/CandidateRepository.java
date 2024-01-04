@@ -8,9 +8,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+@Transactional
 public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
 
     List<Candidate> findByElectionDetail(ElectionDetail electionDetail);
@@ -19,4 +21,9 @@ public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
     List<Candidate> findByElectionDetail_State(StateEnum state);
 
     Candidate findByElectionDetailAndPartyDetail(ElectionDetail electionDetail, PartyDetail partyDetail);
+
+    boolean existsByPartyDetail(PartyDetail partyDetail);
+
+    boolean existsByElectionDetail(ElectionDetail electionDetail);
+
 }

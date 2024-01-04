@@ -3,6 +3,7 @@ package com.asorg.votingsystem.service;
 import com.asorg.votingsystem.dto.CandidateDto;
 import com.asorg.votingsystem.entity.Candidate;
 import com.asorg.votingsystem.entity.ElectionDetail;
+import com.asorg.votingsystem.entity.PartyDetail;
 import com.asorg.votingsystem.enums.StateEnum;
 import com.asorg.votingsystem.repository.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ public class CandidateService {
 
     @Autowired
     private CandidateRepository candidateRepository;
+
     public Candidate addCandidate(CandidateDto candidate) {
         Candidate existing = candidateRepository.findByElectionDetailAndPartyDetail(
                 candidate.getElectionDetail(), candidate.getPartyDetail());
@@ -25,6 +27,7 @@ public class CandidateService {
             newCandidate.setName(candidate.getName());
             newCandidate.setPartyDetail(candidate.getPartyDetail());
             newCandidate.setElectionDetail(candidate.getElectionDetail());
+            newCandidate.setTotalVotes(0L);
             return saveCandidate(newCandidate);
         }
         return null;
@@ -64,6 +67,13 @@ public class CandidateService {
         return candidateRepository.findByElectionDetail(electionDetail);
     }
 
+    public boolean existsCandidateByElections(Integer electId) {
+        return candidateRepository.existsByElectionDetail(new ElectionDetail(electId, null, null, null));
+    }
+
+    public boolean existsCandidateByPartyDetail(Integer partyId) {
+        return candidateRepository.existsByPartyDetail(new PartyDetail(partyId, null, null, null));
+    }
     public List<Candidate> fetchCandidatesByStates(StateEnum state) {
         return candidateRepository.findByElectionDetail_State(state);
     }

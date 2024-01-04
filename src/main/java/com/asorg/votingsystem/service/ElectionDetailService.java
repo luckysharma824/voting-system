@@ -62,6 +62,6 @@ public class ElectionDetailService {
             return Response.handleResponse("Candidates found, Please remove them first", false, HttpStatus.OK);
         }
         electionDetailRepository.deleteById(id);
-        return Response.handleResponse("Election Detail successfully deleted", false, HttpStatus.OK);
+        return Response.handleResponse("Election Detail successfully deleted", true, HttpStatus.OK);
     }
 }

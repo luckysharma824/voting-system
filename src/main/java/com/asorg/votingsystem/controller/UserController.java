@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired
@@ -54,13 +55,13 @@ public class UserController {
     }
 
     @PostMapping(value = "/voting")
-    public ResponseEntity<Object> doVote(@RequestParam("candId") Integer candId, @RequestParam Integer userId) {
+    public ResponseEntity<Object> doVote(@RequestParam("candId") Integer candId/*, @RequestParam Integer userId*/) {
 
-        StatusEnum status = userService.userStatus(userId);
+        /*StatusEnum status = userService.userStatus(userId);
         if (StatusEnum.INACTIVE.equals(status)) {
             return Response.handleResponse("User Not Active Please Activate The User", false,
                     HttpStatus.BAD_REQUEST);
-        }
+        }*/
 
         userService.doVote(candId);
         return Response.handleResponse("voting successfully done", true, HttpStatus.OK);

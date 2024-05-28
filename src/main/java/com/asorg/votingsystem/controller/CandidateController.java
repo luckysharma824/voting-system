@@ -2,6 +2,7 @@ package com.asorg.votingsystem.controller;
 
 import com.asorg.votingsystem.dto.CandidateDto;
 import com.asorg.votingsystem.entity.Candidate;
+import com.asorg.votingsystem.enums.ElectionTypeEnum;
 import com.asorg.votingsystem.service.CandidateService;
 import com.asorg.votingsystem.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,12 @@ public class CandidateController {
     @GetMapping(value = "/candidate-by-election/{electionId}")
     public ResponseEntity<Object> getAllCandidatesByElection(@PathVariable Integer electionId) {
         List<Candidate> candidates = candidateService.listByElections(electionId);
+        return Response.handleResponse(candidates, "Successfully fetched", true, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/candidate/states/{state}/{electionType}")
+    public ResponseEntity<Object> fetchCandidatesByStatesAndElectionType(@PathVariable String state, @PathVariable ElectionTypeEnum electionType) {
+        List<Candidate> candidates = candidateService.fetchCandidatesByStatesAndElectionType(state, electionType);
         return Response.handleResponse(candidates, "Successfully fetched", true, HttpStatus.OK);
     }
 

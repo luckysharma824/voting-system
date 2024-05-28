@@ -4,6 +4,7 @@ import com.asorg.votingsystem.dto.CandidateDto;
 import com.asorg.votingsystem.entity.Candidate;
 import com.asorg.votingsystem.entity.ElectionDetail;
 import com.asorg.votingsystem.entity.PartyDetail;
+import com.asorg.votingsystem.enums.ElectionTypeEnum;
 import com.asorg.votingsystem.repository.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,6 +74,10 @@ public class CandidateService {
     public boolean existsCandidateByPartyDetail(Integer partyId) {
         return candidateRepository.existsByPartyDetail(new PartyDetail(partyId, null, null, null));
     }
+    public List<Candidate> fetchCandidatesByStatesAndElectionType(String state, ElectionTypeEnum electionType) {
+        return candidateRepository.findByElectionDetail_StateAndElectionDetail_ElectionType(state, electionType);
+    }
+
     public List<Candidate> fetchCandidatesByStates(String state) {
         return candidateRepository.findByElectionDetail_State(state);
     }

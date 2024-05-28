@@ -2,7 +2,6 @@ package com.asorg.votingsystem.service;
 
 import com.asorg.votingsystem.dto.ElectionDetailDto;
 import com.asorg.votingsystem.entity.ElectionDetail;
-import com.asorg.votingsystem.enums.StateEnum;
 import com.asorg.votingsystem.repository.ElectionDetailRepository;
 import com.asorg.votingsystem.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +52,7 @@ public class ElectionDetailService {
         return electionDetailRepository.findById(id).orElse(null);
     }
 
-    public List<ElectionDetail> electionDetailList(StateEnum state) {
+    public List<ElectionDetail> electionDetailList(String state) {
         return electionDetailRepository.findByState(state);
     }
 
@@ -62,6 +61,6 @@ public class ElectionDetailService {
             return Response.handleResponse("Candidates found, Please remove them first", false, HttpStatus.OK);
         }
         electionDetailRepository.deleteById(id);
-        return Response.handleResponse("Election Detail successfully deleted", false, HttpStatus.OK);
+        return Response.handleResponse("Election Detail successfully deleted", true, HttpStatus.OK);
     }
 }

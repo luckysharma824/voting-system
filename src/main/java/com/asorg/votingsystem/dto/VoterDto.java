@@ -1,16 +1,21 @@
 package com.asorg.votingsystem.dto;
 
 import com.asorg.votingsystem.entity.BoothDetail;
+import com.asorg.votingsystem.entity.Contact;
 import com.asorg.votingsystem.enums.StatusEnum;
+
+import javax.persistence.CascadeType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
 
 public class VoterDto {
     private Integer id;
     private String voterId;
     private String name;
-    private String username;
-    private String password;
     private BoothDetailDto booth;
     private StatusEnum status;
+    private Contact contact;
 
     public Integer getId() {
         return id;
@@ -36,22 +41,6 @@ public class VoterDto {
         this.name = name;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public BoothDetailDto getBooth() {
         return booth;
     }
@@ -66,5 +55,13 @@ public class VoterDto {
 
     public void setStatus(StatusEnum status) {
         this.status = status;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 }

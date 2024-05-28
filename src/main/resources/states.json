@@ -1,0 +1,114 @@
+[
+  {
+    "iso": "IN-AP",
+    "name": "Andhra Pradesh"
+  },
+  {
+    "iso": "IN-AR",
+    "name": "Arunachal Pradesh"
+  },
+  {
+    "iso": "IN-AS",
+    "name": "Assam"
+  },
+  {
+    "iso": "IN-BR",
+    "name": "Bihar"
+  },
+  {
+    "iso": "IN-CT",
+    "name": "Chhattisgarh"
+  },
+  {
+    "iso": "IN-GA",
+    "name": "Goa"
+  },
+  {
+    "iso": "IN-GJ",
+    "name": "Gujarat"
+  },
+  {
+    "iso": "IN-HR",
+    "name": "Haryana"
+  },
+  {
+    "iso": "IN-HP",
+    "name": "Himachal Pradesh"
+  },
+  {
+    "iso": "IN-JH",
+    "name": "Jharkhand"
+  },
+  {
+    "iso": "IN-KA",
+    "name": "Karnataka"
+  },
+  {
+    "iso": "IN-KL",
+    "name": "Kerala"
+  },
+  {
+    "iso": "IN-MP",
+    "name": "Madhya Pradesh"
+  },
+  {
+    "iso": "IN-MH",
+    "name": "Maharashtra"
+  },
+  {
+    "iso": "IN-MN",
+    "name": "Manipur"
+  },
+  {
+    "iso": "IN-ML",
+    "name": "Meghalaya"
+  },
+  {
+    "iso": "IN-MZ",
+    "name": "Mizoram"
+  },
+  {
+    "iso": "IN-NL",
+    "name": "Nagaland"
+  },
+  {
+    "iso": "IN-OR",
+    "name": "Odisha"
+  },
+  {
+    "iso": "IN-PB",
+    "name": "Punjab"
+  },
+  {
+    "iso": "IN-RJ",
+    "name": "Rajasthan"
+  },
+  {
+    "iso": "IN-SK",
+    "name": "Sikkim"
+  },
+  {
+    "iso": "IN-TN",
+    "name": "Tamil Nadu"
+  },
+  {
+    "iso": "IN-TG",
+    "name": "Telangana"
+  },
+  {
+    "iso": "IN-TR",
+    "name": "Tripura"
+  },
+  {
+    "iso": "IN-UP",
+    "name": "Uttar Pradesh"
+  },
+  {
+    "iso": "IN-UT",
+    "name": "Uttarakhand"
+  },
+  {
+    "iso": "IN-WB",
+    "name": "West Bengal"
+  }
+]

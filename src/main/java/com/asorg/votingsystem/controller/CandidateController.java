@@ -2,7 +2,6 @@ package com.asorg.votingsystem.controller;
 
 import com.asorg.votingsystem.dto.CandidateDto;
 import com.asorg.votingsystem.entity.Candidate;
-import com.asorg.votingsystem.enums.StateEnum;
 import com.asorg.votingsystem.service.CandidateService;
 import com.asorg.votingsystem.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +61,7 @@ public class CandidateController {
     }
 
     @GetMapping(value = "/candidate/states/{state}")
-    public ResponseEntity<Object> fetchCandidatesByStates(@PathVariable StateEnum state) {
+    public ResponseEntity<Object> fetchCandidatesByStates(@PathVariable String state) {
         List<Candidate> candidates = candidateService.fetchCandidatesByStates(state);
         return Response.handleResponse(candidates, "Successfully fetched", true, HttpStatus.OK);
     }

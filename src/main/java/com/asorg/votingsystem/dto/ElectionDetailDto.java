@@ -1,12 +1,11 @@
 package com.asorg.votingsystem.dto;
 
 import com.asorg.votingsystem.enums.ElectionTypeEnum;
-import com.asorg.votingsystem.enums.StateEnum;
 
 public class ElectionDetailDto {
     private Integer id;
     private ElectionTypeEnum electionType;
-    private StateEnum state;
+    private String state;
     private Boolean votingStatus;
 
     public Integer getId() {
@@ -25,11 +24,11 @@ public class ElectionDetailDto {
         this.electionType = electionType;
     }
 
-    public StateEnum getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(StateEnum state) {
+    public void setState(String state) {
         this.state = state;
     }
 

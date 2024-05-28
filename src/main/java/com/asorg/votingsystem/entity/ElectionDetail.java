@@ -1,7 +1,6 @@
 package com.asorg.votingsystem.entity;
 
 import com.asorg.votingsystem.enums.ElectionTypeEnum;
-import com.asorg.votingsystem.enums.StateEnum;
 
 import javax.persistence.*;
 
@@ -12,14 +11,13 @@ public class ElectionDetail {
     private Integer id;
     @Enumerated(EnumType.STRING)
     private ElectionTypeEnum electionType;
-    @Enumerated(EnumType.STRING)
-    private StateEnum state;
+    private String state;
     private Boolean votingStatus;
 
     public ElectionDetail() {
     }
 
-    public ElectionDetail(Integer id, ElectionTypeEnum electionType, StateEnum state, Boolean votingStatus) {
+    public ElectionDetail(Integer id, ElectionTypeEnum electionType, String state, Boolean votingStatus) {
         this.id = id;
         this.electionType = electionType;
         this.state = state;
@@ -42,11 +40,11 @@ public class ElectionDetail {
         this.electionType = electionType;
     }
 
-    public StateEnum getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(StateEnum state) {
+    public void setState(String state) {
         this.state = state;
     }
 

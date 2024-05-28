@@ -1,7 +1,5 @@
 package com.asorg.votingsystem.entity;
 
-import com.asorg.votingsystem.enums.StateEnum;
-
 import javax.persistence.*;
 
 @Entity
@@ -9,8 +7,7 @@ public class BoothDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Enumerated(EnumType.STRING)
-    private StateEnum state;
+    private String state;
     private String district;
     private String block;
     private String booth;
@@ -23,11 +20,11 @@ public class BoothDetail {
         this.id = id;
     }
 
-    public StateEnum getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(StateEnum state) {
+    public void setState(String state) {
         this.state = state;
     }
 

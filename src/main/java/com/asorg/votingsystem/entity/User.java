@@ -1,19 +1,28 @@
 package com.asorg.votingsystem.entity;
 
-import javax.persistence.MappedSuperclass;
+import com.asorg.votingsystem.enums.StatusEnum;
 
-@MappedSuperclass
+import javax.persistence.*;
+
+@Entity
 public class User {
-    private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String username;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private StatusEnum status;
 
-    public String getName() {
-        return name;
+    @OneToOne
+    private Voter voter;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -32,4 +41,19 @@ public class User {
         this.password = password;
     }
 
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
+    }
+
+    public Voter getVoter() {
+        return voter;
+    }
+
+    public void setVoter(Voter voter) {
+        this.voter = voter;
+    }
 }

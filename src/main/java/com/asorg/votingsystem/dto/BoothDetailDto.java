@@ -1,10 +1,8 @@
 package com.asorg.votingsystem.dto;
 
-import com.asorg.votingsystem.enums.StateEnum;
-
 public class BoothDetailDto {
     private Integer id;
-    private StateEnum state;
+    private String state;
     private String district;
     private String block;
     private String booth;
@@ -17,11 +15,11 @@ public class BoothDetailDto {
         this.id = id;
     }
 
-    public StateEnum getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(StateEnum state) {
+    public void setState(String state) {
         this.state = state;
     }
 

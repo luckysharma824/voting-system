@@ -11,30 +11,24 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin("*")
+@RequestMapping("/voter")
 public class VoterController {
     @Autowired
     VoterService voterService;
-    @PostMapping("/voter")
+
+    @PostMapping
     public ResponseEntity<Object> addVoter(@RequestBody VoterDto voterDto) {
         Voter voter = voterService.addVoter(voterDto);
         if (voter == null) {
-            return Response.handleResponse("Voter already registered with voter id or username",
+            return Response.handleResponse("Voter already registered with voter id",
                     false, HttpStatus.OK);
         }
         return Response.handleResponse(voter, "voter successfully added", true, HttpStatus.OK);
     }
 
-    @GetMapping("/voter")
+    @GetMapping
     public ResponseEntity<Object> getVoter(@RequestParam Integer id){
         return Response.handleResponse(voterService.findVoter(id), "successfully fetched",
                 true, HttpStatus.OK);
     }
-
-    @PostMapping(value = "/voting")
-    public ResponseEntity<Object> doVote(@RequestParam("candId") Integer candId) {
-        voterService.doVote(candId);
-        return Response.handleResponse("voting successfully done", true, HttpStatus.OK);
-    }
-
-
 }

@@ -1,19 +1,21 @@
 package com.asorg.votingsystem.entity;
 
 import com.asorg.votingsystem.enums.StatusEnum;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-public class Voter extends User {
+public class Voter {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private String name;
+    @Column(unique = true)
     private String voterId;
     @OneToOne
     private BoothDetail booth;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Contact contact;
 
     @Enumerated(EnumType.STRING)
     private StatusEnum status;
@@ -47,5 +49,21 @@ public class Voter extends User {
 
     public void setStatus(StatusEnum status) {
         this.status = status;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 }
